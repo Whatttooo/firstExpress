@@ -1,0 +1,46 @@
+doctype html
+html
+    head
+        title first express app
+        link(rel="stylesheet", href="/bowerStuff/bootstrap/dist/css/bootstrap.css")
+        link(rel="stylesheet", href="/css/style.css")
+    body
+        nav.navbar.navbar-inverse
+            .container
+                .navbar-header
+                    button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+                        span.sr-only Toggle navigation
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                    a.navbar-brand(href='/') Flati
+                #navbar.collapse.navbar-collapse
+                    ul.nav.navbar-nav
+                        li.active
+                            a(href='/') Home
+                        if user
+                            li
+                                a(href='/articles/add') Add Article
+                    ul.nav.navbar-nav.navbar-right
+                        if user
+                            li 
+                                a(href='/users/logout') Logout
+                        else
+                            li
+                                a(href='/users/register') Register
+                            li
+                                a(href='/users/login') Login
+        .container
+            != messages('message', locals)
+            if errors
+                each error, i in errors
+                    div(class='alert alert-danger') #{error.msg}
+            block content
+            br
+        hr
+        .container
+            footer
+                p CopyRight &copy 2017
+        script(src='/bowerStuff/jquery/dist/jquery.js')
+        script(src='/bowerStuff/bootstrap/dist/js/bootstrap.js')
+        script(src='/js/main.js')
